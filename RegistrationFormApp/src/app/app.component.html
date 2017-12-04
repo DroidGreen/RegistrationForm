@@ -1,0 +1,38 @@
+
+<div *ngIf="!name; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <div class="row columns">
+
+        <h1>Registration Form</h1>
+
+        <label>Name
+          <input type="text" formControlName="name" placeholder='Your full name'>
+        </label>
+        <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ nameAlert }}</div>
+		
+		<label>Email
+          <input type="email" formControlName="email" placeholder='Your email address'>
+        </label>
+        <div class="alert" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">{{ emailAlert }}</div>
+
+
+        <label>Contact Number
+          <input type= "text" formControlName="contact" placeholder='Your contact number'>
+        </label>
+        <div class="alert" *ngIf="!rForm.controls['contact'].valid && rForm.controls['contact'].touched">{{ contactAlert }}</div>
+
+
+        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+        <h1>{{ statusStr }}</h1>
+    </div>
+  </div>
+</ng-template>
